@@ -1,0 +1,23 @@
+<!-- quiz/templates/index.html -->
+<html>
+  <head>
+    <title>Quiz Python</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+<body>
+  <div class="header">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('dzialy') }}">Wybór działu</a>
+    <a href="#">Inne</a>
+  </div>
+
+  <div>
+    <ol>
+    {% for dzial in dzialy %}
+        <li>{{dzial}}</li>
+    {% endfor %}
+  </ol>
+  </div>
+</body>
+</html>
