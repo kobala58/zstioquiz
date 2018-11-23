@@ -7,9 +7,24 @@
   </head>
 <body>
   <div class="header">
-    <a href="#">Home</a>
+    <a href="{{ url_for('index') }}">Home</a>
     <a href="{{ url_for('dzialy') }}">Wybór działu</a>
     <a href="#">Inne</a>
+  </div>
+
+  <div>
+    <form action="{{ url_for('dzialy') }}" method="post">
+    <label>Wybierz dział:</label>
+    <select name="dzial">
+          <option value="praca">praca</option>
+          <option value="rodzina">rodzina</option>
+    <select>
+    </br>
+  Wpisz ilość słówek do wygenerowania:
+  <input type="number" name="wtg">
+  </br>
+  <button type="submit" value="Generuj">
+  </form>
   </div>
 </body>
 </html>
