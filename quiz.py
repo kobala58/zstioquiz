@@ -24,6 +24,8 @@ def dzialy():
        global b
        b=request.args.get('wtg')
        b = int(b)
+       if b > 157:
+           b = 156
        cursor.execute('SELECT * FROM {0} ORDER BY RAND() LIMIT {1}'.format(a,b))
        global slowka
        slowka = cursor.fetchall()
