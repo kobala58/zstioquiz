@@ -15,8 +15,10 @@
   <div>
     <form method="post">
     {% for slowo in slowka %}
-        {{slowo[2]}} <input type="text" name="{{slowo[2]}}"></br>
+        {{slowo[0]}}: <input type="text" name="{{slowo[0]}}"></br>
     {%endfor%}
+    <button type="submit" name="check">sprawdz</button>
+  </form>
   </div>
 </body>
 </html>

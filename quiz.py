@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # quiz/quiz.py
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, abort, flash
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
@@ -19,21 +19,32 @@ cursor = conn.cursor()
 
 @app.route('/dzialy',methods=['POST', 'GET'])
 def dzialy():
-
-    if request.method=='POST':
-       a=request.form['dzial']
-       b=request.form['wtg']
+    if request.method=='GET':
+       a=request.args.get('dzial')
+       global b
+       b=request.args.get('wtg')
        b = int(b)
        cursor.execute('SELECT * FROM {0} ORDER BY RAND() LIMIT {1}'.format(a,b))
+       global slowka
        slowka = cursor.fetchall()
        return  render_template('dzialy.html',slowka = slowka)
+
+    if request.method=='POST':
+        test = []
+        score = 0
+        for x in request.form.items():
+            if x in slowka:
+                score = score+1
+            else:
+                test.append(x[0])
+        wynik = (score / b)*100
+
+        return render_template('wyniki.html',wynik = wynik, test = test)
+
 
 
 @app.route('/' , methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        print("work")
-        return  render_template('dzialy.html')
 
     cursor.execute('SHOW TABLES')
     dzialy = cursor.fetchall()

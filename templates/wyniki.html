@@ -13,17 +13,12 @@
   </div>
 
   <div>
-    <form action="{{ url_for('dzialy') }}" method="GET">
-    <label>Wybierz dział:</label>
-    <select name="dzial">
-          <option value="praca">praca</option>
-          <option value="rodzina">rodzina</option>
-    <select>
-    </br>
-  Wpisz ilość słówek do wygenerowania:
-  <input type="number" name="wtg">
-  </br>
-  <button type="submit">GENERUJ</button>
+    Te słowa napisałeś źle:</br>
+    {% for x in test %}
+        {{x}}:</br>
+    {%endfor%}
+    Uzyskałeś {{wynik}}%!<br>
+    Gratulacje!
   </form>
   </div>
 </body>
